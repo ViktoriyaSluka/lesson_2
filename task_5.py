@@ -1,21 +1,32 @@
-my_list = [3.05, 5, 3.14, 6, 7, 53.2, 5.5, 1, 1, 8.7]
-#1
-def print_price(my_list):
-    for i in range(len(my_list)):
-        rub = int(my_list[i])
-        cop = round(100*(my_list[i] % 1))
+'''
+Реализовать функцию get_jokes(), возвращающую n шуток, сформированных из трех
+случайных слов, взятых из трёх списков (по одному из каждого):
+nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
+adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
+adjectives = ["веселый", "яркий", "зеленый", "утопичный",
+"мягкий"]
+Например:
+>>> get_jokes(2)
+["лес завтра зеленый", "город вчера веселый"]
+'''
 
-        if i == len(my_list) - 1:
-            print(rub, 'руб', f'{cop:02}', 'коп')
-        else:
-            print(rub, 'руб', f'{cop:02}', 'коп', end=', ')
+import random
 
-print_price(my_list)
-#2
-my_list.sort()
-print_price(my_list)
-#3
-reverse_list = sorted(my_list, reverse=True)
-print_price(reverse_list)
-#4
-print_price(my_list[-5:])
+
+def get_jokes(number):
+    nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
+    adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
+    adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
+
+    joke = []
+    for i in range(number):
+        n = random.choice(nouns)
+        ad = random.choice(adverbs)
+        aj = random.choice(adjectives)
+        joke.append(f'{n} {ad} {aj}')
+
+    return joke
+
+
+if __name__ == "__main__":
+    print(get_jokes(3))
